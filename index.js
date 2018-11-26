@@ -36,8 +36,8 @@ app.listen(PORT, () => {
 
   // Функция наполнения базы с отзывами
   let updateDb = async arr => {
-    const reviewsInDb = await Review.where("grade");
-    const reviewsInDbCount = reviewsInDb.length;
+    const reviewsInDbCount = await Review.find().estimatedDocumentCount();
+    // const reviewsInDbCount = reviewsInDb.length;
     console.log("Количество отзывов в базе: " + reviewsInDbCount);
     console.log("Ищем новые отзывы ...");
     const lastReview = await Review.findOne({ id: arr[arr.length - 1].id });
@@ -93,6 +93,7 @@ app.listen(PORT, () => {
     return updateDb(json.opinions);
   };
 
+  fetchReviews();
   setInterval(fetchReviews, 1000 * 60 * 10);
 
   // From YM API
