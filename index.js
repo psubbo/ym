@@ -92,9 +92,11 @@ app.listen(PORT, () => {
     const json = await response.json();
     return updateDb(json.opinions);
   };
-
+  // Пополняем базу при запуске сервера
   fetchReviews();
-  setInterval(fetchReviews, 1000 * 60 * 10);
+
+  // Регулярно пополняем базу каждый час.
+  setInterval(fetchReviews, 1000 * 60 * 60);
 
   // From YM API
 
@@ -127,6 +129,4 @@ app.listen(PORT, () => {
   //       }
   //     });
   // };
-  //
-  // getReviews();
 });
