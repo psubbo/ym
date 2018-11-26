@@ -93,7 +93,7 @@ app.listen(PORT, () => {
     return updateDb(json.opinions);
   };
 
-  setInterval(fetchReviews, 1000 * 60 * 60);
+  setInterval(fetchReviews, 1000 * 60 * 10);
 
   // From YM API
 
