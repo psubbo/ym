@@ -28,6 +28,15 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 const REVIEWS_API_URI = "http://blog.decathlon.ru/assets/json/opinions.json";
 
 const PORT = process.env.PORT || 5000;
@@ -83,7 +92,7 @@ app.listen(PORT, () => {
     }
   };
 
-  const fetchReviews = async () => {
+  const fetchReviewsFromApi = async () => {
     const response = await fetch(REVIEWS_API_URI, {
       headers: {
         "Content-Type": "application/json"
@@ -93,10 +102,10 @@ app.listen(PORT, () => {
     return updateDb(json.opinions);
   };
   // Пополняем базу при запуске сервера
-  fetchReviews();
+  fetchReviewsFromApi();
 
   // Регулярно пополняем базу каждый час.
-  setInterval(fetchReviews, 1000 * 60 * 60);
+  setInterval(fetchReviewsFromApi, 1000 * 60 * 60);
 
   // From YM API
 
