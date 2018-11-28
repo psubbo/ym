@@ -37,7 +37,7 @@ class Header extends Component {
           className="nav-wrapper"
         >
           <Link
-            to={this.pops.auth ? "/dashboard" : "/"}
+            to={this.props.auth ? "/dashboard" : "/"}
             className="left brand-logo"
           >
             YM

@@ -3,7 +3,7 @@ import React from "react";
 const StartScreen = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Аналитика по отзывам в Яндекс Маркет</h1>
+      <h2>Аналитика по отзывам в Яндекс Маркет</h2>
       <p>
         Это приложение скачивает отзывы о компании с сервера Яндекс Маркета и
         расчитывает KPI службы поддержки
@@ -16,3 +16,5 @@ const StartScreen = () => {
     </div>
   );
 };
+
+export default StartScreen;

@@ -27,10 +27,6 @@ class App extends Component {
             <Route path="/custom" component={Custom} />
           </div>
         </BrowserRouter>
-
-        <h1>Отзывы в Яндекс Маркете</h1>
-        <p>Выберите даты:</p>
-        <DatePickerWidget />
       </div>
     );
   }
