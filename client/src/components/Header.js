@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Header extends Component {
@@ -18,7 +19,7 @@ class Header extends Component {
         return (
           <>
             <li>
-              <a href="">Детали</a>
+              <a href="/custom">Детали</a>
             </li>
             <li>
               <a href="/api/logout">Выйти</a>
@@ -31,10 +32,16 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper">
-          <a href="#" className="left brand-logo">
+        <div
+          style={{ paddingLeft: "15px", backgroundColor: "#0082c3" }}
+          className="nav-wrapper"
+        >
+          <Link
+            to={this.pops.auth ? "/dashboard" : "/"}
+            className="left brand-logo"
+          >
             YM
-          </a>
+          </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
