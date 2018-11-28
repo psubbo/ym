@@ -19,6 +19,9 @@ class Header extends Component {
         return (
           <>
             <li>
+              <a href="/dashboard">Обзор</a>
+            </li>
+            <li>
               <a href="/custom">Детали</a>
             </li>
             <li>
@@ -30,6 +33,7 @@ class Header extends Component {
   }
 
   render() {
+    // console.log(this.props);
     return (
       <nav>
         <div
@@ -52,4 +56,4 @@ class Header extends Component {
 function mapStateToProps(state) {
   return { auth: state.auth };
 }
-export default connect()(Header);
+export default connect(mapStateToProps)(Header);
