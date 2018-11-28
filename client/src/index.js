@@ -1,12 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import DatePickerWidget from "./components/DatePicker";
+
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+
+import App from "./components/App";
+import reducers from "./reducers";
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
-  <div id="wrapper">
-    <h1>Отзывы в Яндекс Маркете</h1>
-    <p>Выберите даты:</p>
-    <DatePickerWidget />
-  </div>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
