@@ -8,7 +8,6 @@ import "materialize-css/dist/css/materialize.css";
 
 import Header from "./Header";
 import StartScreen from "./StartScreen";
-const StartScreen = () => <h2>StartScreen</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
 const Custom = () => <h2>Custom</h2>;
 
