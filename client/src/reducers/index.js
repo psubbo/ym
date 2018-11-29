@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-
-export default combineReducers({ auth: authReducer });
+import reviewsReducer from "./reviewsReducer";
+export default combineReducers({ auth: authReducer, reviews: reviewsReducer });

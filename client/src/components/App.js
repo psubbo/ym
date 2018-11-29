@@ -8,12 +8,13 @@ import "materialize-css/dist/css/materialize.css";
 
 import Header from "./Header";
 import StartScreen from "./StartScreen";
-const Dashboard = () => <h2>Dashboard</h2>;
-const Custom = () => <h2>Custom</h2>;
+import Dashboard from "./Dashboard";
+import Custom from "./Custom";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.getReviews();
   }
 
   render() {

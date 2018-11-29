@@ -22,7 +22,7 @@ class Header extends Component {
               <a href="/dashboard">Обзор</a>
             </li>
             <li>
-              <a href="/custom">Детали</a>
+              <a href="/custom">За период</a>
             </li>
             <li>
               <a href="/api/logout">Выйти</a>
@@ -33,7 +33,6 @@ class Header extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <nav>
         <div

@@ -27,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);
+require("./routes/reviewsRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -44,14 +45,12 @@ app.listen(PORT, () => {
   console.log("App working on port: " + PORT);
 
   // Функция наполнения базы с отзывами
-  let updateDb = async arr => {
+  const updateDb = async arr => {
     const reviewsInDbCount = await Review.find().estimatedDocumentCount();
-    // const reviewsInDbCount = reviewsInDb.length;
     console.log("Количество отзывов в базе: " + reviewsInDbCount);
     console.log("Ищем новые отзывы ...");
     const lastReview = await Review.findOne({ id: arr[arr.length - 1].id });
     if (!lastReview) {
-      // if (arr.length > reviewsInDbCount) {
       console.log("Найдены новые отзывы! Сохраняем в базу...");
 
       for (i = arr.length - 1; i >= reviewsInDbCount; i--) {
@@ -107,7 +106,7 @@ app.listen(PORT, () => {
   // Регулярно пополняем базу каждый час.
   setInterval(fetchReviewsFromApi, 1000 * 60 * 60);
 
-  // From YM API
+  // TO DO ---------------------------------------- Import from YM API
 
   // let page = 1;
   // let REVIEWS_ARRAY = [];
