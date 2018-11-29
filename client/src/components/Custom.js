@@ -51,7 +51,7 @@ class Custom extends React.Component {
             selectsEnd
             dateFormat="dd/MM/yyyy"
             className="dateInput"
-            maxDate={this.state.startDate}
+            minDate={this.state.startDate}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
             onChange={this.handleChangeEnd}
