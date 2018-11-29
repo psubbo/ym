@@ -15,21 +15,21 @@ class Custom extends React.Component {
   }
 
   handleChangeStart(date) {
-    console.log(date);
+    // console.log(date);
     this.setState({
       startDate: date
     });
   }
 
   handleChangeEnd(date) {
-    console.log(date);
+    // console.log(date);
     this.setState({
       endDate: date
     });
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div style={{ display: "flex" }}>
         <div>
@@ -51,6 +51,7 @@ class Custom extends React.Component {
             selectsEnd
             dateFormat="dd/MM/yyyy"
             className="dateInput"
+            maxDate={this.state.startDate}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
             onChange={this.handleChangeEnd}
