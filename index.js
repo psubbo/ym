@@ -108,33 +108,36 @@ app.listen(PORT, () => {
 
   // TO DO ---------------------------------------- Import from YM API
 
-  // let page = 1;
-  // let REVIEWS_ARRAY = [];
-  //
-  // let url =
-  //   "https://api.content.market.yandex.ru/v2/shops/334437/opinions?page=" +
-  //   page +
-  //   "&count=30";
+  let page = 1;
+  let REVIEWS_ARRAY = [];
+  let getReviews = () => {
+    let url =
+      "https://api.content.market.yandex.ru/v2/shops/334437/opinions?page=" +
+      page +
+      "&count=30";
 
-  // let getReviews = () => {
-  //   fetch(url, {
-  //     headers: {
-  //       Host: "api.content.market.yandex.ru",
-  //       Accept: "*/*",
-  //       "Content-Type": "application/json",
-  //       Authorization: "6e7e9d0b-9ec4-480b-a5e1-37b3d97d55fc"
-  //     }
-  //   })
-  //     .then(response => response.text())
-  //     .then(text => JSON.parse(text))
-  //     .then(json => {
-  //       if (page < 3) {
-  //         console.log(json);
-  //         REVIEWS_ARRAY = REVIEWS_ARRAY.concat(json.opinions);
-  //         page++;
-  //         getReviews();
-  //         console.log(REVIEWS_ARRAY);
-  //       }
-  //     });
-  // };
+    fetch(url, {
+      headers: {
+        Host: "api.content.market.yandex.ru",
+        Accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: keys.yandexKey
+      }
+    })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json.status);
+        if (json.status != "ERROR") {
+          console.log(json);
+          REVIEWS_ARRAY = REVIEWS_ARRAY.concat(json.opinions);
+          page++;
+          getReviews();
+        } else {
+          page = 1;
+          console.log(REVIEWS_ARRAY.length);
+          updateDb(REVIEWS_ARRAY);
+        }
+      });
+  };
+  // getReviews();
 });

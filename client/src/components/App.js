@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 // import DatePickerWidget from "./DatePickerWidget";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,7 +15,14 @@ import Custom from "./Custom";
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
-    this.props.getReviews();
+    // this.props.getReviews();
+
+    async function setReviewsToLocalStorage() {
+      const res = await axios.get("/api/get_reviews");
+      const reviews = await JSON.stringify(res.data.reviews);
+      localStorage.setItem("reviews", reviews);
+    }
+    setReviewsToLocalStorage();
   }
 
   render() {
